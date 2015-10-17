@@ -54,7 +54,7 @@ public class ReportListAdapter extends BaseAdapter {
         // TODO Auto-generated method stub
         Holder holder = new Holder();
         View rowView;
-        rowView = inflater.inflate(R.layout.dashboard_list_item, null);
+        rowView = inflater.inflate(R.layout.report_list_item, null);
         holder.nameTextView = (TextView) rowView.findViewById(R.id.nameTextView);
         holder.timeTextView = (TextView) rowView.findViewById(R.id.timeTextView);
         holder.detailTextView = (TextView) rowView.findViewById(R.id.detailTextView);
@@ -62,7 +62,7 @@ public class ReportListAdapter extends BaseAdapter {
 
         holder.nameTextView.setText(object.getString("Name"));
         holder.timeTextView.setText(object.getString("time"));
-        holder.detailTextView.setText(object.getString("Category"));
+        holder.detailTextView.setText(object.getString("detail"));
 
         return rowView;
     }

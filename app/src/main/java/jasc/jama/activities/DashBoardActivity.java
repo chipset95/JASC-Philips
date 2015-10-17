@@ -14,6 +14,7 @@ import android.view.MenuItem;
 
 import jasc.jama.R;
 import jasc.jama.fragments.DashHomeFragment;
+import jasc.jama.fragments.HealthDataFragment;
 import jasc.jama.fragments.UserDataFragment;
 
 public class DashBoardActivity extends AppCompatActivity {
@@ -54,6 +55,8 @@ public class DashBoardActivity extends AppCompatActivity {
                     getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, UserDataFragment.newInstance()).commit();
                 if (id == R.id.drawer_home)
                     getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, DashHomeFragment.newInstance()).commit();
+                if (id == R.id.drawer_health)
+                    getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, HealthDataFragment.newInstance()).commit();
                 mDrawerLayout.closeDrawers();
                 return true;
             }
