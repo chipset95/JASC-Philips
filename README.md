@@ -6,6 +6,8 @@ JAMA is a medical tracking app which can keep track of all your prescriptions, d
 
 ###Test Account Credentials:
 
+[APK](https://github.com/chipset95/JASC-Philips/releases/latest)
+
 **Username: `ad`**
 
 **Password: `adad`**
