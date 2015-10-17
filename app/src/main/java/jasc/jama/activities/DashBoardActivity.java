@@ -1,6 +1,7 @@
 package jasc.jama.activities;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -11,6 +12,8 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+
+import com.parse.ParseUser;
 
 import jasc.jama.R;
 import jasc.jama.fragments.DashHomeFragment;
@@ -57,6 +60,21 @@ public class DashBoardActivity extends AppCompatActivity {
                     getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, DashHomeFragment.newInstance()).commit();
                 if (id == R.id.drawer_health)
                     getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, HealthDataFragment.newInstance()).commit();
+                if (id == R.id.drawer_sign_out) {
+                    new AlertDialog.Builder(DashBoardActivity.this)
+                            .setMessage("Are you sure you want to logout?")
+                            .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    ParseUser.logOutInBackground();
+                                    startActivity(SplashActivity.createIntent(getApplicationContext())
+                                            .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
+                                }
+                            })
+                            .setNegativeButton(android.R.string.no, null)
+                            .create().show();
+                    ;
+                }
                 mDrawerLayout.closeDrawers();
                 return true;
             }
@@ -71,13 +89,13 @@ public class DashBoardActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        return mDrawerToggle.onOptionsItemSelected(item) || onOptionsItemSelected(item);
+        return mDrawerToggle.onOptionsItemSelected(item) || super.onOptionsItemSelected(item);
     }
 
     @Override
     public void onBackPressed() {
         if (mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
             mDrawerLayout.closeDrawers();
-        }
+        } else super.onBackPressed();
     }
 }

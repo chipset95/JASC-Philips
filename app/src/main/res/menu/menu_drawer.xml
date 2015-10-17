@@ -9,5 +9,9 @@
         android:title="@string/drawer_user" />
     <item
         android:id="@+id/drawer_health"
-        android:title="Health" />
+        android:icon="@drawable/ic_drawer_health"
+        android:title="@string/health" />
+    <item
+        android:id="@+id/drawer_sign_out"
+        android:title="@string/sign_out" />
 </menu>

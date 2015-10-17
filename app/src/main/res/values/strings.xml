@@ -13,4 +13,6 @@
     <string name="email">Email ID</string>
     <string name="drawer_home">Home</string>
     <string name="drawer_user">User Data</string>
+    <string name="health">Reports &amp; Prescription</string>
+    <string name="sign_out">Sign Out</string>
 </resources>
