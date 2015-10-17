@@ -35,7 +35,7 @@ public class UserDataFragment extends Fragment {
         TabLayout userTabLayout = (TabLayout) view.findViewById(R.id.user_tab_layout);
         ViewPager pager = (ViewPager) view.findViewById(R.id.user_view_pager);
         String titles[] = getActivity().getResources().getStringArray(R.array.user_tabs);
-        pager.setAdapter(new UserTabPagerAdapter(((AppCompatActivity) getActivity()).getSupportFragmentManager(), titles));
+        pager.setAdapter(new UserTabPagerAdapter(getActivity().getSupportFragmentManager(), titles));
         userTabLayout.setupWithViewPager(pager);
     }
 }
