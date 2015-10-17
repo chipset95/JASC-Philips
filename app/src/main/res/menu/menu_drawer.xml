@@ -1,0 +1,13 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/drawer_home"
+        android:icon="@drawable/ic_drawer_home"
+        android:title="@string/drawer_home" />
+    <item
+        android:id="@+id/drawer_user"
+        android:icon="@drawable/ic_drawer_person"
+        android:title="@string/drawer_user" />
+    <item
+        android:id="@+id/drawer_health"
+        android:title="Health" />
+</menu>

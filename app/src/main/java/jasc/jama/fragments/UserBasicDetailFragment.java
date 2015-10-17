@@ -39,5 +39,4 @@ public class UserBasicDetailFragment extends Fragment {
         userUserNameTextView.setText(user.getUsername());
         userEmailTextView.setText(user.getEmail());
     }
-
 }
