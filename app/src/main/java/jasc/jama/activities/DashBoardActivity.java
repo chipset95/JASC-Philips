@@ -12,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import jasc.jama.R;
+import jasc.jama.fragments.DashHomeFragment;
 
 public class DashBoardActivity extends AppCompatActivity {
 
@@ -39,6 +40,8 @@ public class DashBoardActivity extends AppCompatActivity {
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerToggle = new ActionBarDrawerToggle(DashBoardActivity.this, mDrawerLayout, toolbar, R.string.app_name, R.string.app_name);
         mDrawerLayout.setDrawerListener(mDrawerToggle);
+
+        getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, DashHomeFragment.newInstance()).commit();
 
 
     }
