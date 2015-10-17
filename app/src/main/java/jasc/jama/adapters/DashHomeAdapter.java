@@ -19,52 +19,50 @@ public class DashHomeAdapter extends BaseAdapter {
     private static LayoutInflater inflater = null;
 
     public DashHomeAdapter(Context mainActivity, List<ParseObject> itemList) {
-        // TODO Auto-generated constructor stub
-
         this.itemList = itemList;
         context = mainActivity;
-        inflater = (LayoutInflater) context.
-                getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        inflater = LayoutInflater.from(context);
     }
 
     @Override
     public int getCount() {
-        // TODO Auto-generated method stub
         return itemList.size();
     }
 
     @Override
     public ParseObject getItem(int position) {
-        // TODO Auto-generated method stub
         return itemList.get(position);
     }
 
     @Override
     public long getItemId(int position) {
-        // TODO Auto-generated method stub
         return position;
     }
 
-    public class Holder {
+    private static class ViewHolder {
         TextView nameTextView, timeTextView, categoryTextView;
+
+        public ViewHolder(View view) {
+            nameTextView = (TextView) view.findViewById(R.id.nameTextView);
+            timeTextView = (TextView) view.findViewById(R.id.timeTextView);
+            categoryTextView = (TextView) view.findViewById(R.id.categoryTextView);
+        }
     }
 
     @Override
-    public View getView(final int position, View convertView, ViewGroup parent) {
-        // TODO Auto-generated method stub
-        Holder holder = new Holder();
-        View rowView;
-        rowView = inflater.inflate(R.layout.dashboard_list_item, null);
-        holder.nameTextView = (TextView) rowView.findViewById(R.id.nameTextView);
-        holder.timeTextView = (TextView) rowView.findViewById(R.id.timeTextView);
-        holder.categoryTextView = (TextView) rowView.findViewById(R.id.categoryTextView);
-        final ParseObject object = getItem(position);
+    public View getView(int position, View convertView, ViewGroup parent) {
+        if (convertView == null) {
+            convertView = inflater.inflate(R.layout.dashboard_list_item, parent, false);
+            ViewHolder viewHolder = new ViewHolder(convertView);
+            convertView.setTag(viewHolder);
+        }
+        ViewHolder viewHolder = (ViewHolder) convertView.getTag();
+        ParseObject object = getItem(position);
 
-        holder.nameTextView.setText(object.getString("Name"));
-        holder.timeTextView.setText(object.getString("Time"));
-        holder.categoryTextView.setText(object.getString("Category"));
-
-        return rowView;
+        viewHolder.nameTextView.setText(object.getString("Name"));
+        viewHolder.timeTextView.setText(object.getString("Time"));
+        viewHolder.categoryTextView.setText(object.getString("Category"));
+        return convertView;
     }
 
 }

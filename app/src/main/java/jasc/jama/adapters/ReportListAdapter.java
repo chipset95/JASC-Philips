@@ -16,55 +16,56 @@ import jasc.jama.R;
 public class ReportListAdapter extends BaseAdapter {
     List<ParseObject> itemList;
     Context context;
-    private static LayoutInflater inflater = null;
+    private static LayoutInflater inflater;
 
     public ReportListAdapter(Context mainActivity, List<ParseObject> itemList) {
-        // TODO Auto-generated constructor stub
 
         this.itemList = itemList;
         context = mainActivity;
-        inflater = (LayoutInflater) context.
-                getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        inflater = LayoutInflater.from(context);
     }
 
     @Override
     public int getCount() {
-        // TODO Auto-generated method stub
         return itemList.size();
     }
 
     @Override
     public ParseObject getItem(int position) {
-        // TODO Auto-generated method stub
         return itemList.get(position);
     }
 
     @Override
     public long getItemId(int position) {
-        // TODO Auto-generated method stub
         return position;
     }
 
-    public class Holder {
+    private static class ViewHolder {
         TextView nameTextView, timeTextView, detailTextView;
+
+        public ViewHolder(View view) {
+            nameTextView = (TextView) view.findViewById(R.id.nameTextView);
+            timeTextView = (TextView) view.findViewById(R.id.timeTextView);
+            detailTextView = (TextView) view.findViewById(R.id.detailTextView);
+        }
     }
 
     @Override
-    public View getView(final int position, View convertView, ViewGroup parent) {
-        // TODO Auto-generated method stub
-        Holder holder = new Holder();
-        View rowView;
-        rowView = inflater.inflate(R.layout.report_list_item, null);
-        holder.nameTextView = (TextView) rowView.findViewById(R.id.nameTextView);
-        holder.timeTextView = (TextView) rowView.findViewById(R.id.timeTextView);
-        holder.detailTextView = (TextView) rowView.findViewById(R.id.detailTextView);
-        final ParseObject object = getItem(position);
+    public View getView(int position, View convertView, ViewGroup parent) {
+        if (convertView == null) {
+            convertView = inflater.inflate(R.layout.report_list_item, parent, false);
+            ViewHolder viewHolder = new ViewHolder(convertView);
+            convertView.setTag(viewHolder);
+        }
+        ViewHolder viewHolder = (ViewHolder) convertView.getTag();
 
-        holder.nameTextView.setText(object.getString("Name"));
-        holder.timeTextView.setText(object.getString("time"));
-        holder.detailTextView.setText(object.getString("detail"));
+        ParseObject object = getItem(position);
 
-        return rowView;
+        viewHolder.nameTextView.setText(object.getString("Name"));
+        viewHolder.timeTextView.setText(object.getString("time"));
+        viewHolder.detailTextView.setText(object.getString("detail"));
+
+        return convertView;
     }
 
 }

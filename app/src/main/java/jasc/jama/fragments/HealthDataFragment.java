@@ -11,12 +11,11 @@ import android.view.ViewGroup;
 
 import com.parse.ParseUser;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 
 import jasc.jama.R;
-import jasc.jama.adapters.healthTabPagerAdapter;
+import jasc.jama.adapters.HealthTabPagerAdapter;
 
 /**
  * Created by anirudhraghunath on 17/10/15.
@@ -41,7 +40,7 @@ public class HealthDataFragment extends Fragment {
         ArrayList<String> data = (ArrayList<String>) ParseUser.getCurrentUser().get("dept_list");
         Object[] interim = data.toArray();
         String[] titles = Arrays.copyOf(interim, interim.length, String[].class);
-        pager.setAdapter(new healthTabPagerAdapter(getActivity().getSupportFragmentManager(), titles));
+        pager.setAdapter(new HealthTabPagerAdapter(getActivity().getSupportFragmentManager(), titles));
         healthTabLayout.setupWithViewPager(pager);
     }
 }

@@ -5,8 +5,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
 import jasc.jama.fragments.HealthDetailFragment;
-import jasc.jama.fragments.UserBasicDetailFragment;
-import jasc.jama.fragments.UserFitDetailFragment;
 
 /**
  * Developer: chipset
@@ -14,11 +12,11 @@ import jasc.jama.fragments.UserFitDetailFragment;
  * Project : JAMA
  * Date : 17/10/15
  */
-public class healthTabPagerAdapter extends FragmentStatePagerAdapter {
+public class HealthTabPagerAdapter extends FragmentStatePagerAdapter {
 
     private String[] titles;
 
-    public healthTabPagerAdapter(FragmentManager fm, String[] titles) {
+    public HealthTabPagerAdapter(FragmentManager fm, String[] titles) {
         super(fm);
         this.titles = titles;
     }
