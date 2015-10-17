@@ -18,7 +18,9 @@
         <android.support.v7.widget.AppCompatEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Medicine Name" />
+            android:fontFamily="sans-serif-condensed"
+            android:hint="Medicine Name"
+            android:textColor="@color/primary_text" />
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
@@ -29,7 +31,9 @@
         <android.support.v7.widget.AppCompatEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Medicine Dosage" />
+            android:fontFamily="sans-serif-condensed"
+            android:hint="Medicine Dosage"
+            android:textColor="@color/primary_text" />
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
@@ -40,7 +44,9 @@
         <android.support.v7.widget.AppCompatEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Medicine Time" />
+            android:fontFamily="sans-serif-condensed"
+            android:hint="Medicine Time"
+            android:textColor="@color/primary_text" />
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
@@ -51,6 +57,8 @@
         <android.support.v7.widget.AppCompatEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Medicine Frequency (in minutes)" />
+            android:fontFamily="sans-serif-condensed"
+            android:hint="Medicine Frequency (in minutes)"
+            android:textColor="@color/primary_text" />
     </android.support.design.widget.TextInputLayout>
 </LinearLayout>
