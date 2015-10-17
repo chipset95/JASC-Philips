@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 import com.github.jorgecastillo.FillableLoader;
 import com.github.jorgecastillo.State;
 import com.github.jorgecastillo.listener.OnStateChangeListener;
+import com.parse.ParseUser;
 
 import jasc.jama.R;
 
@@ -497,8 +498,7 @@ public class SplashActivity extends AppCompatActivity {
             "             307.00,470.00 306.00,470.00 306.00,470.00 Z";
 
     public static Intent createIntent(Context context) {
-        Intent intent = new Intent(context, SplashActivity.class);
-        return intent;
+        return new Intent(context, SplashActivity.class);
     }
 
     @Override
@@ -557,9 +557,13 @@ public class SplashActivity extends AppCompatActivity {
                     new Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {
-                            layout.setVisibility(View.VISIBLE);
-                            animationFadeIn.start();
-                            animationMoveUp.start();
+                            if (ParseUser.getCurrentUser() == null) {
+                                layout.setVisibility(View.VISIBLE);
+                                animationFadeIn.start();
+                                animationMoveUp.start();
+                            } else
+                                startActivity(DashBoardActivity.createIntent(getApplicationContext())
+                                        .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
                         }
                     }, 1000);
 

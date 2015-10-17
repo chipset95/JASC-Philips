@@ -8,4 +8,7 @@
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_dash_board">Dash Board</string>
     <string name="title_activity_sign_up">Sign Up</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="email">Email ID</string>
 </resources>
