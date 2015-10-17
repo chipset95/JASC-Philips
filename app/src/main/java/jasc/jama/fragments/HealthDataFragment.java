@@ -9,6 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.parse.GetCallback;
+import com.parse.ParseException;
 import com.parse.ParseUser;
 
 import java.util.ArrayList;
@@ -35,12 +37,21 @@ public class HealthDataFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        TabLayout healthTabLayout = (TabLayout) view.findViewById(R.id.health_tab_layout);
-        ViewPager pager = (ViewPager) view.findViewById(R.id.health_view_pager);
-        ArrayList<String> data = (ArrayList<String>) ParseUser.getCurrentUser().get("dept_list");
-        Object[] interim = data.toArray();
-        String[] titles = Arrays.copyOf(interim, interim.length, String[].class);
-        pager.setAdapter(new HealthTabPagerAdapter(getActivity().getSupportFragmentManager(), titles));
-        healthTabLayout.setupWithViewPager(pager);
+        final TabLayout healthTabLayout = (TabLayout) view.findViewById(R.id.health_tab_layout);
+        final ViewPager pager = (ViewPager) view.findViewById(R.id.health_view_pager);
+        final ParseUser user = ParseUser.getCurrentUser();
+        user.fetchInBackground(new GetCallback<ParseUser>() {
+            @Override
+            public void done(ParseUser object, ParseException e) {
+                if (e == null) {
+                    ArrayList<String> data = (ArrayList) user.get("dept_list");
+                    Object[] interim = data.toArray();
+                    String[] titles = Arrays.copyOf(interim, interim.length, String[].class);
+                    pager.setAdapter(new HealthTabPagerAdapter(getActivity().getSupportFragmentManager(), titles));
+                    healthTabLayout.setupWithViewPager(pager);
+                }
+            }
+        });
+
     }
 }

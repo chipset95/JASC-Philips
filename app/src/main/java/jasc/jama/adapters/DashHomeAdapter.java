@@ -1,6 +1,7 @@
 package jasc.jama.adapters;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,28 +41,38 @@ public class DashHomeAdapter extends BaseAdapter {
     }
 
     private static class ViewHolder {
-        TextView nameTextView, timeTextView, categoryTextView;
+        TextView nameTextView, frequencyTextView, timeTextView, dosageTextView;
 
         public ViewHolder(View view) {
             nameTextView = (TextView) view.findViewById(R.id.nameTextView);
             timeTextView = (TextView) view.findViewById(R.id.timeTextView);
-            categoryTextView = (TextView) view.findViewById(R.id.categoryTextView);
+            dosageTextView = (TextView) view.findViewById(R.id.dosageTextView);
+            frequencyTextView = (TextView) view.findViewById(R.id.frequencyTextView);
         }
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+        ParseObject object = getItem(position);
+        String type = object.getString("type");
+        Log.d("TYPE", type);
         if (convertView == null) {
             convertView = inflater.inflate(R.layout.dashboard_list_item, parent, false);
             ViewHolder viewHolder = new ViewHolder(convertView);
             convertView.setTag(viewHolder);
         }
         ViewHolder viewHolder = (ViewHolder) convertView.getTag();
-        ParseObject object = getItem(position);
-
-        viewHolder.nameTextView.setText(object.getString("Name"));
-        viewHolder.timeTextView.setText(object.getString("Time"));
-        viewHolder.categoryTextView.setText(object.getString("Category"));
+        if (type.equalsIgnoreCase("medicine")) {
+            viewHolder.nameTextView.setText(object.getString("Name"));
+            viewHolder.timeTextView.setText(object.getString("Time"));
+            viewHolder.frequencyTextView.setText(object.getString("freq"));
+            viewHolder.dosageTextView.setText(object.getString("dosage"));
+        } else if (type.equalsIgnoreCase("appointment")) {
+            viewHolder.nameTextView.setText(object.getString("reason"));
+            viewHolder.timeTextView.setText(object.getString("Time"));
+            viewHolder.frequencyTextView.setText(object.getString("docs"));
+            viewHolder.dosageTextView.setText(object.getString("Name"));
+        }
         return convertView;
     }
 

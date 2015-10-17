@@ -5,17 +5,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.parse.ParseFile;
 import com.parse.ParseObject;
 
 import java.util.List;
 
 import jasc.jama.R;
+import jasc.jama.activities.ImageActivity;
 
 public class ReportListAdapter extends BaseAdapter {
     List<ParseObject> itemList;
     Context context;
+    String array;
     private static LayoutInflater inflater;
 
     public ReportListAdapter(Context mainActivity, List<ParseObject> itemList) {
@@ -41,12 +45,15 @@ public class ReportListAdapter extends BaseAdapter {
     }
 
     private static class ViewHolder {
-        TextView nameTextView, timeTextView, detailTextView;
+        TextView nameTextView, timeTextView, detailTextView, typeTextView;
+        LinearLayout linearLayout;
 
         public ViewHolder(View view) {
             nameTextView = (TextView) view.findViewById(R.id.nameTextView);
             timeTextView = (TextView) view.findViewById(R.id.timeTextView);
             detailTextView = (TextView) view.findViewById(R.id.detailTextView);
+            typeTextView = (TextView) view.findViewById(R.id.typeTextView);
+            linearLayout = (LinearLayout) view.findViewById(R.id.data_layout);
         }
     }
 
@@ -64,6 +71,17 @@ public class ReportListAdapter extends BaseAdapter {
         viewHolder.nameTextView.setText(object.getString("Name"));
         viewHolder.timeTextView.setText(object.getString("time"));
         viewHolder.detailTextView.setText(object.getString("detail"));
+        viewHolder.typeTextView.setText(object.getString("type"));
+        ParseFile file = object.getParseFile("image");
+        if (file != null)
+            array = file.getUrl();
+        viewHolder.linearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                context.startActivity(ImageActivity.createIntent(context)
+                        .putExtra("img", array));
+            }
+        });
 
         return convertView;
     }

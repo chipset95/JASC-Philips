@@ -36,13 +36,6 @@ public class DashBoardActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.dash_toolbar);
         setSupportActionBar(toolbar);
 
-        new AlertDialog.Builder(DashBoardActivity.this)
-                .setTitle("DISCLAIMER")
-                .setIcon(R.drawable.ic_info_outline)
-                .setMessage("ABCD")
-                .setPositiveButton(android.R.string.ok, null)
-                .create().show();
-
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerToggle = new ActionBarDrawerToggle(DashBoardActivity.this, mDrawerLayout, toolbar, R.string.app_name, R.string.app_name);
         mDrawerLayout.setDrawerListener(mDrawerToggle);

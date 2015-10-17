@@ -15,4 +15,6 @@
     <string name="drawer_user">User Data</string>
     <string name="health">Reports &amp; Prescription</string>
     <string name="sign_out">Sign Out</string>
+    <string name="done">Done</string>
+    <string name="image">Attach Image</string>
 </resources>

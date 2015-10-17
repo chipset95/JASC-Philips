@@ -1,11 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
     <ListView
+        android:id="@+id/dashboardListView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/dashboardListView"/>
-</LinearLayout>
+        android:layout_margin="16dp"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="2dp" />
+
+    <com.github.clans.fab.FloatingActionMenu
+        android:id="@+id/fam"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        fab:menu_colorNormal="@color/accent"
+        fab:menu_colorPressed="@color/light_grey"
+        fab:menu_colorRipple="@color/light_grey"
+        fab:menu_labels_textColor="@color/icons"
+        fab:menu_openDirection="up">
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/fab1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            fab:fabSize="mini"
+            fab:fab_colorNormal="@color/accent"
+            fab:fab_colorPressed="@color/light_grey"
+            fab:fab_colorRipple="@color/light_grey"
+            fab:fab_label="Add An Appointment" />
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/fab2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            fab:fabSize="mini"
+            fab:fab_colorNormal="@color/accent"
+            fab:fab_colorPressed="@color/light_grey"
+            fab:fab_colorRipple="@color/light_grey"
+            fab:fab_label="Medicine Reminder"
+            fab:menu_labels_position="left" />
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/fab3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            fab:fabSize="mini"
+            fab:fab_colorNormal="@color/accent"
+            fab:fab_colorPressed="@color/light_grey"
+            fab:fab_colorRipple="@color/light_grey"
+            fab:fab_label="Add A Report" />
+    </com.github.clans.fab.FloatingActionMenu>
+</RelativeLayout>

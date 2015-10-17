@@ -1,7 +1,6 @@
 package jasc.jama.fragments;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,12 +26,12 @@ public class HealthDetailFragment extends Fragment {
     private String type;
     private ListView reportListView;
 
-    public void setType(String type){
+    public void setType(String type) {
 
         this.type = type;
     }
 
-    public static HealthDetailFragment newInstance(String type){
+    public static HealthDetailFragment newInstance(String type) {
 
         HealthDetailFragment f = new HealthDetailFragment();
         f.setType(type);
@@ -40,24 +39,22 @@ public class HealthDetailFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return super.onCreateView(inflater, container, savedInstanceState);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,  Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_health_detail, container, false);
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        reportListView = (ListView)view.findViewById(R.id.report_list_view);
+        reportListView = (ListView) view.findViewById(R.id.report_list_view);
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Details");
         query.whereEqualTo("user_id", ParseUser.getCurrentUser().getObjectId());
-        query.whereEqualTo("type",type);
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> objects, ParseException e) {
-
-
-                if(e == null)
+                if (objects.size() == 0) {
+                }
+                if (e == null)
                     reportListView.setAdapter(new ReportListAdapter(getContext(), objects));
                 else
                     e.printStackTrace();
