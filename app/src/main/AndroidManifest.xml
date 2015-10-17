@@ -25,18 +25,16 @@
         </activity>
         <activity
             android:name=".activities.SignInActivity"
-            android:parentActivityName=".activities.SplashActivity"
-            android:label="@string/title_activity_login" >
-        </activity>
-        <activity
-            android:name=".activities.DashBoardActivity"
-            android:label="@string/title_activity_dash_board" >
-        </activity>
+            android:label="@string/title_activity_login"
+            android:parentActivityName=".activities.SplashActivity" />
         <activity
             android:name=".activities.SignUpActivity"
             android:label="@string/title_activity_sign_up"
-            android:parentActivityName=".activities.SplashActivity">
-        </activity>
+            android:parentActivityName=".activities.SplashActivity" />
+        <activity
+            android:name=".activities.DashBoardActivity"
+            android:label="@string/title_activity_dash_board"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>
