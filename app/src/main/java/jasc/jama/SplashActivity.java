@@ -1,52 +1,83 @@
 package jasc.jama;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import android.support.v7.widget.AppCompatButton;
 import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.LinearLayout;
+
+import com.github.jorgecastillo.FillableLoader;
+import com.github.jorgecastillo.State;
+import com.github.jorgecastillo.listener.OnStateChangeListener;
 
 public class SplashActivity extends AppCompatActivity {
+
+    private String path = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        final Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.anim_fade_in);
+
+        FillableLoader splashFillableLoader = (FillableLoader) findViewById(R.id.splash_fillable_loader);
+        final LinearLayout layout = (LinearLayout) findViewById(R.id.button_layout);
+        final AppCompatButton signinButton = (AppCompatButton) findViewById(R.id.splash_to_signin_button);
+        final AppCompatButton signupButton = (AppCompatButton) findViewById(R.id.splash_to_signup_button);
+
+
+        layout.setAnimation(animation);
+        animation.setAnimationListener(new Animation.AnimationListener() {
             @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                signinButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                    }
+                });
+                signupButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                    }
+                });
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+
+        splashFillableLoader.setSvgPath(path);
+        splashFillableLoader.start();
+
+        splashFillableLoader.setOnStateChangeListener(new OnStateChangeListener() {
+            @Override
+            public void onStateChange(int i) {
+                if (i == State.FINISHED) {
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            layout.setVisibility(View.VISIBLE);
+                            layout.animate();
+                        }
+                    }, 1000);
+
+                }
             }
         });
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_splash, menu);
-        return true;
-    }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 }
